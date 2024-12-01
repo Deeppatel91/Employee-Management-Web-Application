@@ -19,16 +19,21 @@ const UpdateEmployee = () => {
         department: ''
     });
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchEmployee = async () => {
+            setLoading(true);
             try {
-                const response = await axios.get(`/api/v1/emp/employees/${id}`);
+                const response = await axios.get(`http://localhost:3001/api/v1/emp/employees/${id}`);
                 const { __v, created_at, updated_at, ...employeeData } = response.data;
                 setFormData(employeeData);
+                setError('');
             } catch (error) {
                 setError('Error fetching employee details');
-                console.error(error);
+                console.error('Fetch Employee Error:', error.response?.data || error.message);
+            } finally {
+                setLoading(false);
             }
         };
         fetchEmployee();
@@ -46,13 +51,13 @@ const UpdateEmployee = () => {
             navigate('/employees');
         } catch (error) {
             setError('Error updating employee');
-            console.error(error);
+            console.error('Update Employee Error:', error.response?.data || error.message);
         }
     };
 
-    const formatFieldName = (name) => {
-        return name.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    };
+    if (loading) {
+        return <Typography>Loading...</Typography>;
+    }
 
     return (
         <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
@@ -67,7 +72,7 @@ const UpdateEmployee = () => {
                             <Grid item xs={12} sm={6} key={key}>
                                 <TextField
                                     id={key}
-                                    label={formatFieldName(key)}
+                                    label={key.replace(/_/g, ' ').toUpperCase()}
                                     variant="outlined"
                                     type={key === 'date_of_joining' ? 'date' : 'text'}
                                     name={key}
@@ -83,17 +88,7 @@ const UpdateEmployee = () => {
                         ))}
                     </Grid>
                     <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-                        <Button 
-                            type="submit" 
-                            variant="contained" 
-                            color="primary" 
-                            sx={{ 
-                                fontSize: '1rem', 
-                                fontWeight: 'bold',
-                                padding: '10px 20px',
-                                borderRadius: '8px'
-                            }}
-                        >
+                        <Button type="submit" variant="contained" color="primary">
                             Update Employee
                         </Button>
                     </Box>
