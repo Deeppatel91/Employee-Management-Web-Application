@@ -12,7 +12,6 @@ router.get('/employees', async (req, res) => {
     }
 });
 
-// Search Employees by Department or Position
 router.get('/employees/search', async (req, res) => {
     const { department, position } = req.query;
 

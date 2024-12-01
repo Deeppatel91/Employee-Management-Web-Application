@@ -20,7 +20,6 @@ services:
     depends_on:
       - mongodb
     environment:
-      # Environment variable to choose the MongoDB connection URI
       MONGO_URI: ${MONGO_URI:-mongodb://mongodb:27017/mydatabase}
 
   mongodb:
