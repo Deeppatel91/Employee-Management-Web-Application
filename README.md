@@ -15,7 +15,7 @@ Follow the steps below to set up and run the project locally:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Deeppatel91/101415117_comp3123_assignment-2.git
+git clone https://github.com/Deeppatel91/101415117_comp3123_assignment-2.git   '''
 
 2. Navigate to the Project Directory
 
@@ -32,15 +32,4 @@ npm install
 After dependencies are installed, start the application:
 
 npm start
-
-Technologies Used
-
-	•	Frontend: React.js
-	•	Backend: Node.js (Express.js)
-
-Notes
-
-	•	Ensure you have Node.js and npm installed on your system before running the above commands.
-	•	For any issues or questions, feel free to contact me.
-
 
