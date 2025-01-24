@@ -54,10 +54,3 @@ The **Employee Management Web Application** is a responsive and secure web appli
 - **Deployment:** Vercel
 
 ---
-
-## Setup and Deployment
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/employee-management-app.git
-   cd employee-management-app
